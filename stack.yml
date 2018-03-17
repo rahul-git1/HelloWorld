@@ -1,0 +1,23 @@
+Resources:
+  AppNode:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: 'ami-66506c1c'
+      KeyName: zoho
+      SecurityGroups:
+        - !Ref AppNodeSG
+  AppNodeSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: For the Appnodes that allow ssh, http docker ports
+      SecurityGroupIngress:
+       - IpProtocol: tcp
+         FromPort: '80'
+         ToPort: '80'
+         CidrIp: 0.0.0.0/0
+       - IpProtocol: tcp
+         FromPort: '22'
+         ToPort: '22'
+         CidrIp: 0.0.0.0/0
+
